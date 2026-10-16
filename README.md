@@ -1,45 +1,57 @@
 # Handwritten Character Recognition
 
-A machine learning application that recognizes handwritten letters and digits using a Convolutional Neural Network (CNN). The project provides an interactive Streamlit interface for uploading an image or drawing a character and viewing the model's predictions.
+A CNN-powered web application that recognizes handwritten digits and letters using the **EMNIST Balanced** dataset. Built with TensorFlow/Keras and Streamlit, it supports both image upload and on-screen drawing.
 
-## Project Overview
+<p align="center">
+  <a href="https://handwrittencharacter-recognition1.streamlit.app/"><strong>Live Demo</strong></a>
+  ·
+  <a href="https://github.com/Ashishcoder01/CodeAlpha_Handwritten_Character_Recognition"><strong>Source Code</strong></a>
+</p>
 
-The application uses a CNN trained on the **EMNIST Balanced dataset** to classify handwritten characters across 47 classes.
+[![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white)](https://www.python.org/)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-Keras-orange?logo=tensorflow&logoColor=white)](https://www.tensorflow.org/)
+[![Streamlit](https://img.shields.io/badge/App-Streamlit-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io/)
 
-### Key Features
+## Overview
 
-- Upload an image containing a handwritten character.
-- Draw a character directly on the application canvas.
-- Predict the most likely character.
-- Display confidence scores and the top five predictions.
-- Preview the processed 28 × 28 image supplied to the model.
-- Interactive web interface built with Streamlit.
+The application takes a handwritten character image, applies the preprocessing expected by the trained model, and returns the most likely class. Users can upload an image or draw a character directly in the browser.
 
-## Model Information
+## Features
+
+- **Image upload:** Submit an image of a handwritten character.
+- **Interactive drawing:** Draw a character on the canvas.
+- **Character prediction:** Classify characters across 47 EMNIST Balanced classes.
+- **Confidence score:** View the model's confidence for its leading prediction.
+- **Top-five results:** Compare the five highest-scoring predictions.
+- **Preprocessing preview:** Inspect the 28 × 28 image passed to the model.
+- **Web interface:** Use the app in a browser through Streamlit.
+
+## Model Details
 
 | Property | Details |
 |---|---|
-| Model type | Convolutional Neural Network (CNN) |
+| Model architecture | Convolutional Neural Network (CNN) |
 | Dataset | EMNIST Balanced |
 | Number of classes | 47 |
 | Training samples | 112,800 |
-| Testing samples | 18,800 |
-| Input image size | 28 × 28 pixels |
+| Test samples | 18,800 |
+| Input dimensions | 28 × 28 pixels, grayscale |
 | Reported test accuracy | 89.08% |
-| Model format | Keras (`.keras`) |
+| Saved model | Keras `.keras` format |
 
-*The accuracy above is the reported result from the model's evaluation. Actual predictions may vary depending on image quality, character style, and preprocessing.*
+The reported accuracy is from the model evaluation performed during development. Results for individual images can vary with handwriting style, image quality, and preprocessing.
 
 ## Technology Stack
 
 - Python
-- TensorFlow / Keras
+- TensorFlow and Keras
 - Streamlit
+- Streamlit Drawable Canvas
 - NumPy
 - Pillow
-- Streamlit Drawable Canvas
+- Matplotlib
 
-## Project Structure
+## Repository Structure
 
 ```text
 CodeAlpha_Handwritten_Character_Recognition/
@@ -52,26 +64,21 @@ CodeAlpha_Handwritten_Character_Recognition/
 └── .gitignore
 ```
 
-## Installation and Setup
+## Run Locally
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/CodeAlpha_Handwritten_Character_Recognition.git
+git clone https://github.com/Ashishcoder01/CodeAlpha_Handwritten_Character_Recognition.git
 cd CodeAlpha_Handwritten_Character_Recognition
 ```
 
-Replace `YOUR_GITHUB_USERNAME` with your GitHub username.
+### 2. Create and activate a virtual environment
 
-### 2. Create a virtual environment
-
-```bash
-python -m venv .venv
-```
-
-Activate it on Windows PowerShell:
+Windows PowerShell:
 
 ```powershell
+python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
@@ -82,40 +89,47 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### 4. Run the application
+### 4. Start the application
 
 ```bash
 python -m streamlit run app.py
 ```
 
-Streamlit will provide a local URL, usually `http://localhost:8501`.
+Open the local URL shown in the terminal, usually [http://localhost:8501](http://localhost:8501).
 
 ## How It Works
 
-1. The user uploads an image or draws a handwritten character.
-2. The application converts the image into the expected grayscale input format.
-3. The image is resized and normalized to match the model's input requirements.
-4. The trained CNN generates class predictions.
-5. The interface displays the predicted character, confidence, and alternative predictions.
+1. The user uploads an image or draws a character.
+2. The app converts the input to grayscale and prepares it for inference.
+3. The image is resized to 28 × 28 pixels, oriented and normalized to match the model's expected input.
+4. The trained CNN produces scores for the supported character classes.
+5. The app displays the leading prediction, confidence, top-five alternatives, and processed input preview.
 
 ## Dataset
 
-The model was trained using the EMNIST Balanced handwritten-character dataset, which contains handwritten digits and letters across 47 classes.
+The model was trained with the **EMNIST Balanced** handwritten-character dataset.
 
-Dataset reference: [EMNIST — NIST Special Database 19](https://www.nist.gov/itl/products-and-services/emnist-dataset)
+- Dataset reference: [NIST — EMNIST Dataset](https://www.nist.gov/itl/products-and-services/emnist-dataset)
+
+## Live Application
+
+Try the deployed app here:
+
+**[Open Handwritten Character Recognition](https://handwrittencharacter-recognition1.streamlit.app/)**
+
+For best results, use a clear image containing one character with strong contrast between the character and its background.
 
 ## Future Improvements
 
-- Improve recognition of visually similar characters.
-- Evaluate performance on images from different sources.
-- Add batch image prediction.
-- Expand automated testing and model evaluation.
-- Deploy the application publicly.
+- Evaluate recognition on a broader set of real-world handwriting samples.
+- Add batch prediction for multiple images.
+- Expand automated tests and document per-class evaluation metrics.
+- Add representative screenshots and examples from the deployed interface.
 
-## Internship Project
+## Project Context
 
-Developed as part of the CodeAlpha Machine Learning Internship.
+This project was developed as part of the **CodeAlpha Machine Learning Internship**.
 
 ## License
 
-No license has been specified yet. Unless a license is added, the repository's code is not automatically granted an open-source license.
+No open-source license has been added to this repository. Unless a license is included, reuse and redistribution are subject to the default copyright rules.
